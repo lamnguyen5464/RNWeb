@@ -21,9 +21,42 @@ import {
 } from './utils/Colors';
 import {DEVICE_HEIGHT, DEVICE_WIDTH} from './utils/Dimensions';
 import {isWeb} from './utils/DeviceUtils';
-import images from './assets/images';
 
-const App = () => {
+// import 'react-native-gesture-handler';
+import {NavigationContainer} from '@react-navigation/native';
+import {createStackNavigator} from '@react-navigation/stack';
+// import {Link} from '@react-navigation/web';
+
+const Stack = createStackNavigator();
+
+const navigationContainer = () => {
+  return (
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen
+          name="App"
+          component={App}
+          options={{title: 'Di bo cung momo'}}
+        />
+        <Stack.Screen
+          name="tmpScreen"
+          component={tmpScreen}
+          options={{title: 'tmpScreen'}}
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
+};
+
+const tmpScreen = () => {
+  return (
+    <View>
+      <Text>test</Text>
+    </View>
+  );
+};
+
+const App = ({navigation}) => {
   const padding = isWeb ? 300 : 0;
   const _renderStepInfo = () => {
     return (
@@ -76,8 +109,8 @@ const App = () => {
             marginLeft: 20,
           }}
           nPress={() => {
-            console.log(isWeb);
-            console.log('Pressed taking');
+            console.log('here');
+            // navigation.push('tmpScreen');
           }}>
           <Text style={{color: 'white'}}>Nhan</Text>
         </TouchableOpacity>
@@ -182,7 +215,6 @@ const App = () => {
           style={{
             fontWeight: 'bold',
             textAlign: 'center',
-            numberOfLines: 2,
           }}>
           Hay dong bo du lieu buoc chan de theo doi suc khoe cua ban
         </Text>
@@ -193,6 +225,10 @@ const App = () => {
             paddingVertical: 10,
             paddingHorizontal: 20,
             borderRadius: 10,
+          }}
+          onPress={() => {
+            console.log('click');
+            navigation.push('tmpScreen');
           }}>
           <Text style={{fontWeight: 'bold', color: 'white'}}>Dong bo</Text>
         </TouchableOpacity>
@@ -393,9 +429,6 @@ const App = () => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <View style={styles.header}>
-        <Text style={styles.textHeader}>Di bo cung MoMo</Text>
-      </View>
       <ScrollView>
         {_renderUserInfo()}
         {_renderTabChart()}
@@ -505,4 +538,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default App;
+export default navigationContainer;
