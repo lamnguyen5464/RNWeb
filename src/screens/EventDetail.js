@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   View,
   Text,
@@ -9,13 +9,66 @@ import {
   TouchableOpacity,
   ScrollView,
   SafeAreaView,
+  Alert,
+  Modal,
 } from 'react-native';
+import {ProgressBar} from 'react-native-web';
 import {DEVICE_HEIGHT, DEVICE_WIDTH} from '../utils/Dimensions';
 import ViewMoreText from '../components/ViewMoreText';
 
 const isWeb = Platform.OS === 'web';
 const padding = isWeb ? 300 : 0;
-const EventDetail = ({navigation}) => {
+const EventDetail = ({route, navigation}) => {
+  const [modalVisibility, setModalVisibility] = useState(false);
+  const [paticipation, setPaticipation] = useState(false);
+  useEffect(() => {
+    console.log(route.params);
+    if (typeof route.params !== 'undefined') {
+      setModalVisibility(route.params.success);
+      setPaticipation(route.params.success);
+    }
+  }, [route]);
+
+  const ModalSuccess = () => {
+    return (
+      <Modal
+        animationType="fade"
+        transparent={true}
+        visible={modalVisibility}
+        onRequestClose={() => {
+          Alert.alert('Modal has been closed.');
+        }}
+        style={{
+          flex: 1,
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}>
+        <View style={{backgroundColor: '#00000050', paddingBottom: 500}}>
+          <View style={styles.modal}>
+            <Text style={{fontWeight: 'bold', fontSize: 16, marginBottom: 10}}>
+              Chúc mừng bạn
+            </Text>
+            <Text>
+              Bạn đã tham gia thành công sự kiên. Hãy cùng nhau cố gắng nhé!
+            </Text>
+            <View
+              style={{
+                justifyContent: 'flex-start',
+                marginTop: 20,
+              }}>
+              <TouchableOpacity
+                onPress={() => {
+                  setModalVisibility(false);
+                }}
+                style={styles.acceptButton}>
+                <Text style={{color: 'white'}}>Đồng ý</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        </View>
+      </Modal>
+    );
+  };
   const HeroTeam = () => {
     return (
       <View style={{flexDirection: 'row', marginTop: 10}}>
@@ -201,8 +254,163 @@ const EventDetail = ({navigation}) => {
     );
   };
 
+  const _renderRating = () => {
+    return (
+      <View
+        style={{
+          paddingLeft: 10,
+          backgroundColor: 'white',
+          marginTop: 10,
+          marginBottom: 10,
+          paddingTop: 10,
+          paddingBottom: 10,
+        }}>
+        <Text style={{fontWeight: 'bold', fontSize: 16}}>
+          Bảng xếp hạng đội
+        </Text>
+        <View
+          style={{flexDirection: 'row', marginTop: 20, alignItems: 'center'}}>
+          <Image
+            source={{
+              uri:
+                'https://i.pinimg.com/originals/b2/2a/3e/b22a3e3ef491c790e2cc9ab7aebaa3dc.png',
+            }}
+            style={styles.icon}
+          />
+          <Image
+            source={{
+              uri:
+                'https://i.pinimg.com/originals/b2/2a/3e/b22a3e3ef491c790e2cc9ab7aebaa3dc.png',
+            }}
+            style={styles.icon}
+          />
+          <View>
+            <View
+              style={{
+                flexDirection: 'row',
+                justifyContent: 'space-between',
+                alignItems: 'center',
+                height: 30,
+              }}>
+              <Text>group 1</Text>
+              <Text>22.63</Text>
+            </View>
+            {/* <Progress.Bar
+              progress={0.9}
+              width={DEVICE_WIDTH - 100}
+              color="pink"
+              borderColor="white"
+            /> */}
+          </View>
+        </View>
+        <View
+          style={{flexDirection: 'row', marginTop: 20, alignItems: 'center'}}>
+          <Image
+            source={{
+              uri:
+                'https://i.pinimg.com/originals/b2/2a/3e/b22a3e3ef491c790e2cc9ab7aebaa3dc.png',
+            }}
+            style={styles.icon}
+          />
+          <Image
+            source={{
+              uri:
+                'https://i.pinimg.com/originals/b2/2a/3e/b22a3e3ef491c790e2cc9ab7aebaa3dc.png',
+            }}
+            style={styles.icon}
+          />
+          <View>
+            <View
+              style={{
+                flexDirection: 'row',
+                justifyContent: 'space-between',
+                alignItems: 'center',
+                height: 30,
+              }}>
+              <Text>group 2</Text>
+              <Text>321</Text>
+            </View>
+            {/* <Progress.Bar
+              progress={0.1}
+              width={DEVICE_WIDTH - 100}
+              color="pink"
+              borderColor="white"
+            /> */}
+          </View>
+        </View>
+      </View>
+    );
+  };
+
+  const _renderSelfRanking = () => {
+    return (
+      <View
+        style={{
+          paddingLeft: 10,
+          backgroundColor: 'white',
+          marginTop: 10,
+          marginBottom: 10,
+          paddingTop: 10,
+          paddingBottom: 10,
+        }}>
+        <Text style={{fontWeight: 'bold', fontSize: 16}}>
+          Bảng xếp hạng cá nhân
+        </Text>
+        <View
+          style={{flexDirection: 'row', marginTop: 20, alignItems: 'center'}}>
+          <Image
+            source={{
+              uri:
+                'https://i.pinimg.com/originals/b2/2a/3e/b22a3e3ef491c790e2cc9ab7aebaa3dc.png',
+            }}
+            style={styles.icon}
+          />
+          <View
+            style={{
+              flexDirection: 'row',
+              justifyContent: 'center',
+              alignItems: 'center',
+              paddingBottom: 10,
+              borderBottomWidth: 0.5,
+              borderBottomColor: 'black',
+            }}>
+            <Image
+              source={{
+                uri:
+                  'https://i.pinimg.com/originals/b2/2a/3e/b22a3e3ef491c790e2cc9ab7aebaa3dc.png',
+              }}
+              style={{width: 30, height: 30}}
+            />
+            <View>
+              <View
+                style={{
+                  flexDirection: 'row',
+                  justifyContent: 'space-between',
+                  alignItems: 'center',
+                  height: 30,
+                  width: DEVICE_WIDTH - 120 - padding * 2,
+                }}>
+                <Text>PHÙ VĨNH HÙNG</Text>
+                <View style={{flexDirection: 'row', alignItems: 'center'}}>
+                  <Text>22.63</Text>
+                  <Image
+                    source={{
+                      uri:
+                        'https://i.pinimg.com/originals/b2/2a/3e/b22a3e3ef491c790e2cc9ab7aebaa3dc.png',
+                    }}
+                    style={{width: 30, height: 30}}
+                  />
+                </View>
+              </View>
+            </View>
+          </View>
+        </View>
+      </View>
+    );
+  };
   return (
     <SafeAreaView style={styles.container}>
+      <ModalSuccess />
       <ScrollView>
         <View>
           <Image
@@ -215,13 +423,26 @@ const EventDetail = ({navigation}) => {
         </View>
         <View style={styles.containerInfo}>
           <_renderEventInfo />
-          <_renderEventDetail />
-          <_renderEventTeam />
+          {!paticipation ? (
+            <View>
+              <_renderEventDetail />
+              <_renderEventTeam />
+            </View>
+          ) : (
+            <View>
+              <_renderRating />
+              <_renderSelfRanking />
+            </View>
+          )}
         </View>
       </ScrollView>
       {!isWeb ? (
         <View style={styles.footer}>
-          <TouchableOpacity style={styles.footerButton}>
+          <TouchableOpacity
+            style={styles.footerButton}
+            onPress={() => {
+              setModalVisibility(true);
+            }}>
             <Text
               style={{
                 textAlign: 'center',
@@ -235,7 +456,11 @@ const EventDetail = ({navigation}) => {
         </View>
       ) : (
         <View>
-          <TouchableOpacity style={styles.footerButton}>
+          <TouchableOpacity
+            style={styles.footerButton}
+            onPress={() => {
+              setModalVisibility(true);
+            }}>
             <Text
               style={{
                 textAlign: 'center',
@@ -276,6 +501,7 @@ const styles = StyleSheet.create({
   icon: {
     width: 25,
     height: 25,
+    marginRight: 10,
   },
   radioButton: {},
   heroView: {
@@ -300,6 +526,35 @@ const styles = StyleSheet.create({
     height: 40,
     margin: 10,
     borderRadius: 10,
+  },
+  modal: {
+    padding: 20,
+    backgroundColor: 'white',
+    width: DEVICE_WIDTH - 2 * padding - 20,
+    marginLeft: padding + 10,
+    marginTop: DEVICE_HEIGHT / 3,
+    borderRadius: 10,
+  },
+  cancleButton: {
+    borderWidth: 1,
+    borderRadius: 10,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderColor: 'green',
+    width: (DEVICE_WIDTH - 2 * padding) / 2 - 50,
+    height: 50,
+    color: 'green',
+  },
+  acceptButton: {
+    backgroundColor: 'green',
+    borderWidth: 1,
+    borderRadius: 10,
+    color: 'white',
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderColor: 'green',
+    width: (DEVICE_WIDTH - 2 * padding) / 2 - 50,
+    height: 50,
   },
 });
 

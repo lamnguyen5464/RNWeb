@@ -32,8 +32,21 @@ import HeroTeam from './screens/HeroTeam';
 const Stack = createStackNavigator();
 
 const navigationContainer = () => {
+  const config = {
+    screens: {
+      App: '/',
+      EventDetail: '/eventDetail',
+      HeroTeam: '/eventDetail/groupInfo',
+    },
+  };
+
+  const linking = {
+    // prefixes: ['https://mychat.com', 'mychat://'],
+    config,
+  };
+
   return (
-    <NavigationContainer>
+    <NavigationContainer linking={linking}>
       <Stack.Navigator>
         <Stack.Screen
           name="App"

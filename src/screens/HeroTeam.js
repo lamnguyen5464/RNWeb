@@ -14,7 +14,7 @@ import {DEVICE_HEIGHT, DEVICE_WIDTH} from '../utils/Dimensions';
 
 const isWeb = Platform.OS === 'web';
 const padding = isWeb ? 300 : 0;
-const HeroTeam = () => {
+const HeroTeam = ({navigation}) => {
   const [modalVisibility, setModalVisibility] = useState(false);
   return (
     <SafeAreaView style={styles.container}>
@@ -56,6 +56,9 @@ const HeroTeam = () => {
               <TouchableOpacity
                 onPress={() => {
                   setModalVisibility(false);
+                  navigation.navigate('EventDetail', {
+                    success: true,
+                  });
                 }}
                 style={styles.acceptButton}>
                 <Text style={{color: 'white'}}>Tham gia</Text>
