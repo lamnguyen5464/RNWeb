@@ -15,7 +15,7 @@ const App = () => {
   const _renderStepInfo = () => {
     return (
       <View style={styles.containerStepInfo}>
-        <Text>Hom nay</Text>
+        <Text>Hom naykjlkjkj</Text>
         <Text style={{fontWeight: 'bold', color: PRIMAY_COLOR, fontSize: 20}}>
           0
         </Text>
