@@ -24,6 +24,7 @@ import {isWeb} from './utils/DeviceUtils';
 import images from './assets/images';
 
 const App = () => {
+  const padding = isWeb ? 300 : 0;
   const _renderStepInfo = () => {
     return (
       <View style={styles.containerStepInfo}>
@@ -74,7 +75,7 @@ const App = () => {
             padding: 5,
             marginLeft: 20,
           }}
-          onPress={() => {
+          nPress={() => {
             console.log(isWeb);
             console.log('Pressed taking');
           }}>
@@ -199,7 +200,6 @@ const App = () => {
     );
   };
   const _renderEvent = () => {
-    const padding = isWeb ? 300 : 0;
     const _renderItem = (uri, des) => {
       return (
         <View
@@ -302,6 +302,95 @@ const App = () => {
       </View>
     );
   };
+
+  const _renderRankingBoard = () => {
+    const uri = [
+      'https://lh3.googleusercontent.com/J_X7xt8C9ayOUf3jSX_934KGUFlZecApGUTVSgq2qqb5r788jV4w4SckxzLIwmEZ4jAK8iCmtR7HcGFzzCJOdD4hNpetZvP8nHFp6We0ik7xdF4yI9o40HAI5K-wSDlzrOzwa78OEjuxT7ujZ6g8ktrUks2lSblnQj5FhfLW3tmf76e2bcVIqAugkLMB0ZGuTjmfyiDAU54Q-Aew7fe6_0Q5=w512',
+      'https://lh4.googleusercontent.com/pK9KShH_DakjGyyV7cHq1pLCDJu6JbygCvcwdWf8iX0mlFzAEHAm-f6E6l1gzCZ5IEwdqUaRceLywTgSbg1fVMMOop2bpx99kOzvmMKPtduSOOukgqT8n7xJmKv3fzJ8KkjPzCkngMlALKCwM0ZpSlPE4pj0l5uUiK3UInGw7Jy7ID4Heh45Ocq3eOuR4s1_yzkzXyoXn3FqTducyXQofLDV94cF0As=w512',
+      'https://lh5.googleusercontent.com/9dj1E5cGWry10y7KaApN5Otvt_8igukkeH05cB2kzICVLyhXskVYnjsC4lCpOGKg1rLqV6TjMTczkGJ1pAouQho6cpYwjm2Ilir9r-uLv4laX_DbbJnAZfvZFgd4D_S2JsaH3ADriVi0C_b44sswbmqWHUMn-yB0-_lRMWIM2f8CVkKs71V_bzFJ2tx--KjCIowhh7_cuftW0yemqXjPDW7rB4QyknOx=w512',
+    ];
+    const _renderItemRanking = (info) => {
+      return (
+        <View
+          style={{
+            height: 70,
+            alignItems: 'center',
+            padding: 10,
+            flexDirection: 'row',
+          }}>
+          {info.pos > 3 ? (
+            <View
+              style={{
+                backgroundColor: '#2f2f2f20',
+                width: 30,
+                height: 30,
+                borderRadius: 100,
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}>
+              <Text style={{fontSize: 12}}>{info?.pos}</Text>
+            </View>
+          ) : (
+            <Image
+              source={{uri: uri[info.pos - 1]}}
+              style={{
+                width: 30,
+                height: 30,
+                borderRadius: 100,
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}
+            />
+          )}
+
+          <Image
+            source={{
+              uri:
+                'https://lh6.googleusercontent.com/z9NP1Fj6_tHjlgG9fz63HLwUtyEsmwru33VuZPZP6a1L5XdUyxzbCLf5M0BK5q5O1AiFAKGWgr8Ye7oGF5Y_qA_WFVTN4NV_5hJKLFOXJfWQTToYe2I_mApnVWnPyoR3DHE7yiCDRr-KVVTwt-IndiW-UMz-tf7zeNPBJkFiIA8dCvzD6g2cZ2LdsTZTZM3ch2lEA7piVUYC8pn8rfSxviqIVGmfN7s=w512',
+            }}
+            style={{width: 50, height: 50, marginLeft: 10}}
+          />
+          <Text
+            style={{
+              flex: 0.9,
+              marginLeft: 10,
+              fontSize: 17,
+            }}>
+            {info.name}
+          </Text>
+          <Text
+            style={{
+              fontWeight: 'bold',
+              fontSize: 12,
+            }}>
+            {info.steps}
+          </Text>
+          <Image
+            source={{
+              uri:
+                'https://lh5.googleusercontent.com/qt_bDLUthJ931HEp_ST1wrdJDGeJsKtqJ-B2t5uGHsQK435gENLWjE5ekx_WTRpoxbWuEKT7t3XchmffbTW6tBeKNN6KEzMHFX3j9G-f7IDpkFK4T1Ze7GLlPDZIEdA-n9EsLIOLFDG_uyTk05lxLb7nhq0wamwqMmTaoYYxu9aB3ezVhyfpH_wBlLaVpHbk7p1IaoVmJvhmF_uxIF0u5m9fF-1En8kLqCVvRvn4rw=w512',
+            }}
+            style={{width: 20, height: 20}}
+          />
+        </View>
+      );
+    };
+    return (
+      <View style={{marginHorizontal: padding, marginTop: 20}}>
+        <Text style={{fontWeight: 'bold', fontSize: 20, marginLeft: 10}}>
+          Bang xep hang thang nay
+        </Text>
+        {_renderItemRanking({pos: 1, name: 'Lam Nguyen', steps: '70000'})}
+        {_renderItemRanking({pos: 2, name: 'Lam Nguyen', steps: '60000'})}
+        {_renderItemRanking({pos: 3, name: 'Lam Nguyen', steps: '50000'})}
+        {_renderItemRanking({pos: 4, name: 'Lam Nguyen', steps: '40000'})}
+        {_renderItemRanking({pos: 5, name: 'Lam Nguyen', steps: '30000'})}
+        {_renderItemRanking({pos: 6, name: 'Lam Nguyen', steps: '20000'})}
+        {_renderItemRanking({pos: 7, name: 'Lam Nguyen', steps: '10000'})}
+      </View>
+    );
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.header}>
@@ -313,6 +402,7 @@ const App = () => {
         {_renderEvent()}
         {_renderEvent()}
         {_renderEvent()}
+        {_renderRankingBoard()}
         {_renderFooter()}
       </ScrollView>
     </SafeAreaView>
