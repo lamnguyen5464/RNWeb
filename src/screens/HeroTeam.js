@@ -25,30 +25,42 @@ const HeroTeam = () => {
         onRequestClose={() => {
           Alert.alert('Modal has been closed.');
         }}
-        style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-        <View style={styles.modal}>
-          <Text>Xác nhận tham gia đội</Text>
-          <Text>
-            {' '}
-            Bạn đang tham gia đội siêu nhân, số bước chân trong sự kiện của bạn
-            sẽ chỉ được tính cho đội này. Bạn không thể thay đổi đội trong sự
-            kiện
-          </Text>
-          <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
-            <TouchableOpacity
-              onPress={() => {
-                setModalVisibility(false);
-              }}
-              style={styles.cancleButton}>
-              <Text>Huỷ</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              onPress={() => {
-                setModalVisibility(false);
-              }}
-              style={styles.acceptButton}>
-              <Text>Tham gia</Text>
-            </TouchableOpacity>
+        style={{
+          flex: 1,
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}>
+        <View style={{backgroundColor: '#00000050', paddingBottom: 500}}>
+          <View style={styles.modal}>
+            <Text style={{fontWeight: 'bold', fontSize: 16, marginBottom: 10}}>
+              Xác nhận tham gia đội
+            </Text>
+            <Text>
+              Bạn đang tham gia đội siêu nhân, số bước chân trong sự kiện của
+              bạn sẽ chỉ được tính cho đội này. Bạn không thể thay đổi đội trong
+              sự kiện
+            </Text>
+            <View
+              style={{
+                flexDirection: 'row',
+                justifyContent: 'space-between',
+                marginTop: 20,
+              }}>
+              <TouchableOpacity
+                onPress={() => {
+                  setModalVisibility(false);
+                }}
+                style={styles.cancleButton}>
+                <Text style={{color: 'green'}}>Huỷ</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                onPress={() => {
+                  setModalVisibility(false);
+                }}
+                style={styles.acceptButton}>
+                <Text style={{color: 'white'}}>Tham gia</Text>
+              </TouchableOpacity>
+            </View>
           </View>
         </View>
       </Modal>
@@ -91,6 +103,10 @@ const HeroTeam = () => {
                 //   fontWeight: 'bold',
                 fontSize: 20,
                 color: 'white',
+              }}
+              onPress={() => {
+                console.log('Hello');
+                setModalVisibility(true);
               }}>
               Tham gia
             </Text>
@@ -165,7 +181,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     height: 200,
     left: 0,
-    top: DEVICE_HEIGHT - 80,
+    top: DEVICE_HEIGHT - 180,
     width: DEVICE_WIDTH,
     backgroundColor: 'white',
   },
@@ -179,10 +195,9 @@ const styles = StyleSheet.create({
   modal: {
     padding: 20,
     backgroundColor: 'white',
-    width: DEVICE_WIDTH - 2 * padding,
-    height: 300,
-    marginLeft: padding,
-    marginTop: DEVICE_HEIGHT / 5,
+    width: DEVICE_WIDTH - 2 * padding - 20,
+    marginLeft: padding + 10,
+    marginTop: DEVICE_HEIGHT / 3,
     borderRadius: 10,
   },
   cancleButton: {

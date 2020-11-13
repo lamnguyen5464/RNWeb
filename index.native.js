@@ -8,4 +8,4 @@ import EventDetail from './src/screens/EventDetail';
 import HeroTeam from './src/screens/HeroTeam';
 import {name as appName} from './src/app.json';
 
-AppRegistry.registerComponent(appName, () => HeroTeam);
+AppRegistry.registerComponent(appName, () => App);

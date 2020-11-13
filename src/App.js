@@ -25,6 +25,8 @@ import {isWeb} from './utils/DeviceUtils';
 // import 'react-native-gesture-handler';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
+import EventDetail from './screens/EventDetail';
+import HeroTeam from './screens/HeroTeam';
 // import {Link} from '@react-navigation/web';
 
 const Stack = createStackNavigator();
@@ -42,6 +44,16 @@ const navigationContainer = () => {
           name="tmpScreen"
           component={tmpScreen}
           options={{title: 'tmpScreen'}}
+        />
+        <Stack.Screen
+          name="EventDetail"
+          component={EventDetail}
+          options={{title: 'Siêu anh hùng'}}
+        />
+        <Stack.Screen
+          name="HeroTeam"
+          component={HeroTeam}
+          options={{title: 'HeroTeam'}}
         />
       </Stack.Navigator>
     </NavigationContainer>
@@ -313,6 +325,9 @@ const App = ({navigation}) => {
               backgroundColor: GREEN_COLOR,
               borderWidth: 1,
               borderColor: GREEN_COLOR,
+            }}
+            onPress={() => {
+              navigation.push('EventDetail');
             }}>
             <Text style={{fontWeight: 'bold', fontSize: 17, color: 'white'}}>
               Tham gia

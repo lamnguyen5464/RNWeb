@@ -44,7 +44,12 @@ const EventDetail = ({navigation}) => {
             </View>
           </TouchableOpacity>
         </View>
-        <TouchableOpacity style={styles.heroView}>
+        <TouchableOpacity
+          style={styles.heroView}
+          onPress={() => {
+            navigation.push('HeroTeam');
+            console.log('hello');
+          }}>
           <Image
             source={{
               uri:
@@ -285,7 +290,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     height: 200,
     left: 0,
-    top: DEVICE_HEIGHT - 80,
+    top: DEVICE_HEIGHT - 180,
     width: DEVICE_WIDTH,
     backgroundColor: 'white',
   },
