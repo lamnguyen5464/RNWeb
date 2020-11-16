@@ -8,13 +8,14 @@
     "start": "npx react-native start",
     "web": "npx react-scripts start",
     "test": "jest",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "build": "react-scripts build"
   },
   "dependencies": {
     "@babel/plugin-syntax-flow": "^7.12.1",
     "@babel/preset-flow": "^7.12.1",
-    "@momo-platform/component-kits": "^1.1.5",
-    "@momo-platform/max-api": "^0.0.41",
+    "@momo-platform/component-kits": "^1.1.9",
+    "@momo-platform/max-api": "^0.0.43",
     "@react-native-community/async-storage": "^1.12.1",
     "@react-native-community/masked-view": "^0.1.10",
     "@react-navigation/native": "^5.8.9",

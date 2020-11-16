@@ -13,7 +13,7 @@ import {
 import {DEVICE_HEIGHT, DEVICE_WIDTH} from '../utils/Dimensions';
 
 const isWeb = Platform.OS === 'web';
-const padding = isWeb ? 300 : 0;
+const padding = isWeb ? 0 : 0;
 const HeroTeam = ({navigation}) => {
   const [modalVisibility, setModalVisibility] = useState(false);
   return (

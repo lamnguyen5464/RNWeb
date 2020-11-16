@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import {
   View,
   Text,
@@ -11,16 +11,18 @@ import {
   SafeAreaView,
   Alert,
   Modal,
+  Animated,
 } from 'react-native';
-import {ProgressBar} from 'react-native-web';
 import {DEVICE_HEIGHT, DEVICE_WIDTH} from '../utils/Dimensions';
 import ViewMoreText from '../components/ViewMoreText';
 
 const isWeb = Platform.OS === 'web';
-const padding = isWeb ? 300 : 0;
+const padding = isWeb ? 0 : 0;
+const progressWidth = DEVICE_WIDTH - 2 * padding - 100;
 const EventDetail = ({route, navigation}) => {
   const [modalVisibility, setModalVisibility] = useState(false);
   const [paticipation, setPaticipation] = useState(false);
+  const progressAnim = useRef(new Animated.Value(-progressWidth)).current;
   useEffect(() => {
     console.log(route.params);
     if (typeof route.params !== 'undefined') {
@@ -28,6 +30,17 @@ const EventDetail = ({route, navigation}) => {
       setPaticipation(route.params.success);
     }
   }, [route]);
+
+  useEffect(() => {
+    expandProgress(100);
+  });
+  const expandProgress = (value) => {
+    Animated.timing(progressAnim, {
+      toValue: -progressWidth + (progressWidth * value) / 100,
+      useNativeDriver: true,
+      duration: 2000,
+    }).start();
+  };
 
   const ModalSuccess = () => {
     return (
@@ -145,7 +158,7 @@ const EventDetail = ({route, navigation}) => {
         }}>
         <View style={{justifyContent: 'center'}}>
           <Text style={{fontWeight: 'bold', fontSize: 20}}>
-            Lập đội siêu anh hung - Cuộc chiến vô cực (Mùa 1)
+            ffasdf đội siêu anh hung - Cuộc chiến vô cực (Mùa 1)
           </Text>
           <Info
             uri="https://chat.google.com/api/get_attachment_url?url_type=FIFE_URL&content_type=image%2Fpng&attachment_token=AAUuIGva26MOVbvEIHjQBDRkPBGopWny9Wrr2SFH7i3nZbllM%2Fy0QdNE6ENy8F96Fo5cyjbIfRm9eDkJpnhbF19ERWqMf%2BKha2ZLQvBOFiN3O00tygKCe4so6LgZn8Hr8ni7A0bQoZN89AS1C%2Byi14iAp1mkmyxj6FT8IWNDk%2B50pCAP5fbKTDDdxGzg8SfRbIDjFbYmIQ%2F5LMtkJ%2FKG5UXvFSqMUIEOPgNTAM2KMIJ86qLlvM7IHCx5rT0Lbs6iEsK12eAhmbVvtsQt9LqwRyFn7HVJIK9aR%2B0uFlIz7c09WrcEmTwWshCE4kQ%2BJd0peIv1H%2Biz5lW2YNe2TFOeVTl1KM3wsH%2FFuo2IlbfWBpzClUDSETDuV0MamxMuVCSzFQLU&sz=w512"
@@ -210,11 +223,11 @@ const EventDetail = ({route, navigation}) => {
           renderViewLess={renderViewLess}
           textStyle={{fontSize: 14}}>
           <Text>
-            - Thẻ quà được tặng ngẫu nhiên về Ví MoMo của khách hàng may mắn
-            chưa từng thanh toán App Store qua Ví MoMo. - Thẻ quà áp dụng cho
-            thanh toán các dịch vụ trên App Store/Google Play như nạp game, mua
-            vật phẩm, mua items, nâng cấp dung lượng iCloud/Google Drive và các
-            ứng dụng xem phim, âm nhạc, sách báo…. - Thẻ quà giảm 20.000đ áp
+            - Tfasdfhẻ quà được tặng ngẫu nhiên về Ví MoMo của khách hàng may
+            mắn chưa từng thanh toán App Store qua Ví MoMo. - Thẻ quà áp dụng
+            cho thanh toán các dịch vụ trên App Store/Google Play như nạp game,
+            mua vật phẩm, mua items, nâng cấp dung lượng iCloud/Google Drive và
+            các ứng dụng xem phim, âm nhạc, sách báo…. - Thẻ quà giảm 20.000đ áp
             dụng cho giao dịch thanh toán App Store/Google Play từ 20.000đ. -
             Thẻ quà tặng chỉ áp dụng cho 1 lần thanh toán. - Thẻ quà sẽ được tự
             động áp dụng khi thanh toán. - Mỗi khách hàng/SĐT/Ví MoMo chỉ được
@@ -301,6 +314,17 @@ const EventDetail = ({route, navigation}) => {
               color="pink"
               borderColor="white"
             /> */}
+            <View style={styles.progressContainer}>
+              <Animated.View
+                style={{
+                  width: progressWidth,
+                  height: 4,
+                  borderRadius: 2,
+                  backgroundColor: true ? '#a50064' : '#7BC83F',
+                  transform: [{translateX: progressAnim}],
+                }}
+              />
+            </View>
           </View>
         </View>
         <View
@@ -336,6 +360,17 @@ const EventDetail = ({route, navigation}) => {
               color="pink"
               borderColor="white"
             /> */}
+            <View style={styles.progressContainer}>
+              <Animated.View
+                style={{
+                  width: progressWidth,
+                  height: 4,
+                  borderRadius: 2,
+                  backgroundColor: true ? '#a50064' : '#7BC83F',
+                  transform: [{translateX: progressAnim}],
+                }}
+              />
+            </View>
           </View>
         </View>
       </View>
@@ -485,7 +520,7 @@ const styles = StyleSheet.create({
   },
   containerInfo: {
     paddingLeft: padding,
-    width: DEVICE_WIDTH - padding,
+    // width: DEVICE_WIDTH - padding,
   },
   banner: {
     width: DEVICE_WIDTH,
@@ -555,6 +590,14 @@ const styles = StyleSheet.create({
     borderColor: 'green',
     width: (DEVICE_WIDTH - 2 * padding) / 2 - 50,
     height: 50,
+  },
+  progressContainer: {
+    height: 4,
+    width: progressWidth,
+    borderRadius: 2,
+    marginTop: 4,
+    backgroundColor: '#ffffff',
+    overflow: 'hidden',
   },
 });
 

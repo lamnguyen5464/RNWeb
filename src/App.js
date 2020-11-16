@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useRef} from 'react';
 import {
   View,
   Text,
@@ -21,6 +21,7 @@ import {
 } from './utils/Colors';
 import {DEVICE_HEIGHT, DEVICE_WIDTH} from './utils/Dimensions';
 import {isWeb} from './utils/DeviceUtils';
+import MaxApi from '@momo-platform/max-api';
 
 // import 'react-native-gesture-handler';
 import {NavigationContainer} from '@react-navigation/native';
@@ -51,7 +52,14 @@ const navigationContainer = () => {
         <Stack.Screen
           name="App"
           component={App}
-          options={{title: 'Di bo cung momo'}}
+          options={{
+            title: 'Di bo cung momo',
+            headerStyle: {
+              backgroundColor: '#f4511e',
+              position: 'sticky',
+              zIndex: 100,
+            },
+          }}
         />
         <Stack.Screen
           name="tmpScreen"
@@ -82,7 +90,7 @@ const tmpScreen = () => {
 };
 
 const App = ({navigation}) => {
-  const padding = isWeb ? 300 : 0;
+  const padding = isWeb ? 0 : 0;
   const _renderStepInfo = () => {
     return (
       <View style={styles.containerStepInfo}>
@@ -236,6 +244,7 @@ const App = ({navigation}) => {
           }}
           style={{width: DEVICE_WIDTH * 0.3, height: DEVICE_WIDTH * 0.3}}
         />
+        {/* <BarChartRNW data={[56, 12]} type="day" /> */}
         <Text
           style={{
             fontWeight: 'bold',
@@ -319,11 +328,17 @@ const App = ({navigation}) => {
               borderRadius: 10,
               backgroundColor: 'white',
               borderWidth: 1,
-              borderColor: GREEN_COLOR,
+            }}
+            onPress={() => {
+              console.log('click');
+              // MaxApi.openDialer('0908144880');
+              MaxApi.getProfile((data) => {
+                MaxApi.showAlert('Test', JSON.stringify(data), [], () => {});
+              });
             }}>
             <Text
               style={{fontWeight: 'bold', fontSize: 17, color: GREEN_COLOR}}>
-              Chi tiet
+              C2hi tiet
             </Text>
           </TouchableOpacity>
 

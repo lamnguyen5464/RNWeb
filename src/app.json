@@ -1,4 +1,12 @@
 {
-  "name": "RnWeb",
-  "displayName": "RnWeb"
+  "appId": "vn.momo.web.reactnativewebtest",
+  "name": "vn.momo.web.reactnativewebtest",
+  "displayName": "React Native Web Test",
+  "client": {
+    "web": {
+      "hostId": "vn.momo.web.reactnativewebtest",
+      "accessToken": "U2FsdGVkX1+88v8DXxj/MOwJ5hij4dIanReDiHyXaQYjCixBOnw9OX0pnCsiUBIyljlN2qPjflF6SxfTMipA3vOm4tMKS1EhskxTE+OcRJTuIj42U1cVxgor6k58hSXo"
+    }
+  },
+  "configuration_version": 1
 }

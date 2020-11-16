@@ -1557,10 +1557,10 @@
     "@types/yargs" "^15.0.0"
     chalk "^4.0.0"
 
-"@momo-platform/component-kits@^1.1.5":
-  version "1.1.5"
-  resolved "https://registry.yarnpkg.com/@momo-platform/component-kits/-/component-kits-1.1.5.tgz#fd2c81b1dbaf7dc8fb7c374ce221574fef25ad79"
-  integrity sha512-PQngp04WUGIAMHVMRHOBCg98sVBwc+3OD1473jj/vCV9XlP+eWnEIRhd460EmBUQohv2RFziy12f7trh1KypAg==
+"@momo-platform/component-kits@^1.1.9":
+  version "1.1.9"
+  resolved "https://registry.yarnpkg.com/@momo-platform/component-kits/-/component-kits-1.1.9.tgz#619a688cbdf4226ede38e9735a06ae4cb6c26bc5"
+  integrity sha512-k4qnJkF+AmJgsejqzIAN9JCsgn6Jh/hu9JrWp3L6rZDmScs78iYOhpkd9faGDehIge6uzFmc3K4MLha+hatIKQ==
   dependencies:
     "@react-native-community/art" "^1.2.0"
     "@react-native-community/image-editor" "^2.3.0"
@@ -1587,10 +1587,10 @@
     react-native-screens "2.4.0"
     react-native-svg "^11.0.1"
 
-"@momo-platform/max-api@^0.0.41":
-  version "0.0.41"
-  resolved "https://registry.yarnpkg.com/@momo-platform/max-api/-/max-api-0.0.41.tgz#b0a5ed9a07d1baf13d6a21b8ed8c2ba0dac23f9a"
-  integrity sha512-L+anmF5I86WmbCpgvHndCl6PA+jMj5SC2Z9C80l2Vl9nu6e8wSG5plAp84ZpWiNr8DQCOoO2YD5n8ocrhhNmmQ==
+"@momo-platform/max-api@^0.0.43":
+  version "0.0.43"
+  resolved "https://registry.yarnpkg.com/@momo-platform/max-api/-/max-api-0.0.43.tgz#c32f6b136b12b3751b4dda0ee47bfae51c6c1f82"
+  integrity sha512-NZaITgmY8tTzNY89aG/vEe2VzGduRV8lOZAU99n+nrocqBQ53xG4585z50W8my67Xg3VJWtY54z9xJ4pGbAw8Q==
 
 "@nodelib/fs.scandir@2.1.3":
   version "2.1.3"
