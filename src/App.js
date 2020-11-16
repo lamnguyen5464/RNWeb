@@ -25,6 +25,8 @@ import {isWeb} from './utils/DeviceUtils';
 // import 'react-native-gesture-handler';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
+import EventDetail from './screens/EventDetail';
+import {createBrowserApp} from '@react-navigation/web';
 // import {Link} from '@react-navigation/web';
 
 const Stack = createStackNavigator();
@@ -35,28 +37,19 @@ const navigationContainer = () => {
       <Stack.Navigator>
         <Stack.Screen
           name="App"
-          component={App}
+          component={Home}
           options={{title: 'Di bo cung momo'}}
         />
         <Stack.Screen
-          name="tmpScreen"
-          component={tmpScreen}
-          options={{title: 'tmpScreen'}}
+          name="EventDetail"
+          component={EventDetail}
+          options={{title: 'EventDetail'}}
         />
       </Stack.Navigator>
     </NavigationContainer>
   );
 };
-
-const tmpScreen = () => {
-  return (
-    <View>
-      <Text>test</Text>
-    </View>
-  );
-};
-
-const App = ({navigation}) => {
+const Home = ({navigation}) => {
   const padding = isWeb ? 300 : 0;
   const _renderStepInfo = () => {
     return (
@@ -110,7 +103,6 @@ const App = ({navigation}) => {
           }}
           nPress={() => {
             console.log('here');
-            // navigation.push('tmpScreen');
           }}>
           <Text style={{color: 'white'}}>Nhan</Text>
         </TouchableOpacity>
@@ -227,8 +219,10 @@ const App = ({navigation}) => {
             borderRadius: 10,
           }}
           onPress={() => {
-            console.log('click');
-            navigation.push('tmpScreen');
+            console.log('click Dong bo');
+            navigation.push({
+              screen: EventDetail,
+            });
           }}>
           <Text style={{fontWeight: 'bold', color: 'white'}}>Dong bo</Text>
         </TouchableOpacity>
@@ -313,6 +307,9 @@ const App = ({navigation}) => {
               backgroundColor: GREEN_COLOR,
               borderWidth: 1,
               borderColor: GREEN_COLOR,
+            }}
+            onPress={() => {
+              navigation.navigate('EventDetail');
             }}>
             <Text style={{fontWeight: 'bold', fontSize: 17, color: 'white'}}>
               Tham gia
